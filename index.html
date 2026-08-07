@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="전북특별자치도교육청 행정업무 공식 자료를 빠르게 찾는 길라잡이">
+  <title>전북교육 행정업무 길라잡이</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip" href="#main">본문 바로가기</a>
+  <header class="topbar">
+    <a class="brand" href="./" aria-label="첫 화면"><span class="brand-mark">전북</span><span>행정업무 길라잡이</span></a>
+    <nav aria-label="주요 메뉴"><a href="#guide">행정 길라잡이</a><a href="#departments">부서별 자료</a><a href="#favorites">즐겨찾기</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <p class="eyebrow">JEONBUK EDUCATION · ADMIN GUIDE</p>
+      <h1>필요한 전북교육 행정업무를<br>빠르게 찾아보세요</h1>
+      <p class="lead">전북특별자치도교육청의 행정 길라잡이, 업무매뉴얼과 17개 부서 공식 자료실을 한곳에서 연결합니다.</p>
+      <form class="search" id="searchForm" role="search">
+        <label class="sr-only" for="searchInput">자료 검색</label>
+        <input id="searchInput" type="search" placeholder="예: 예산, 계약, 급여, 시설, 안전" autocomplete="off">
+        <button type="submit">검색</button>
+      </form>
+      <div class="chips" aria-label="추천 검색어"><button>계약</button><button>예산</button><button>시설</button><button>인사</button><button>안전</button></div>
+    </section>
+
+    <section class="section" id="guide">
+      <div class="section-head"><div><p class="kicker">QUICK ACCESS</p><h2>행정 길라잡이</h2><p>업무 목적에 맞는 전북교육청 공식 자료로 바로 이동합니다.</p></div><span class="count">5 MENU</span></div>
+      <div class="card-grid" id="guideGrid"></div>
+    </section>
+
+    <section class="section tint" id="departments">
+      <div class="section-head"><div><p class="kicker">DEPARTMENTS</p><h2>부서별 업무 자료</h2><p>부서 홈페이지에서 자료실·묻고답하기·업무마당·지침을 확인하세요.</p></div><span class="count">17 DEPT</span></div>
+      <div class="filters" id="filters"><button class="active" data-group="전체">전체</button><button data-group="정책국">정책국</button><button data-group="교육국">교육국</button><button data-group="행정국">행정국</button><button data-group="독립">감사관</button></div>
+      <div class="dept-grid" id="deptGrid"></div>
+    </section>
+
+    <section class="section" id="favorites">
+      <div class="section-head"><div><p class="kicker">MY LINKS</p><h2>내 즐겨찾기</h2><p>각 카드의 별표를 누르면 이 브라우저에 저장됩니다.</p></div><button class="text-btn" id="clearFavorites">모두 해제</button></div>
+      <div class="empty" id="favoriteGrid">아직 즐겨찾기한 자료가 없습니다.</div>
+    </section>
+
+    <section class="notice">
+      <strong>이용 안내</strong>
+      <p>이 사이트는 전북특별자치도교육청의 비공식 편의형 링크 모음입니다. 자료의 최종 내용과 시행 여부는 연결된 공식 페이지에서 확인하세요. 원문·첨부파일은 이 저장소에 보관하지 않습니다.</p>
+      <p id="statusText">공식 링크 상태를 확인하는 중입니다.</p>
+    </section>
+  </main>
+  <footer><p>전북교육 행정업무 길라잡이</p><a href="https://www.jbe.go.kr/" target="_blank" rel="noopener">전북특별자치도교육청 바로가기 ↗</a></footer>
+  <div class="results" id="results" hidden><div class="results-panel"><div class="results-head"><h2>검색 결과</h2><button id="closeResults" aria-label="검색 결과 닫기">×</button></div><div id="resultList"></div></div></div>
+  <script src="app.js"></script>
+</body>
+</html>
