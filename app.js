@@ -1,0 +1,25 @@
+const guides=[
+ {id:'calendar',title:'행정달력',desc:'월별·시기별 주요 행정업무 일정을 확인합니다.',icon:'📅',url:'https://www.jbe.go.kr/schedule/list.jbe?boardId=BBS_0000084&menuCd=DOM_000000106002001000&contentsSid=335&cpath='},
+ {id:'admin-guide',title:'학교행정업무 길라잡이',desc:'학교 현장에서 필요한 행정업무 안내 자료를 확인합니다.',icon:'🧭',url:'https://www.jbe.go.kr/board/list.jbe?boardId=BBS_0000085&menuCd=DOM_000000106002002000&contentsSid=336&cpath='},
+ {id:'accounting',title:'회계업무시스템 입문서',desc:'회계 업무 시스템 입문 자료와 활용 안내를 확인합니다.',icon:'🧾',url:'https://www.jbe.go.kr/board/list.jbe?boardId=BBS_0000086&menuCd=DOM_000000106002003000&contentsSid=337&cpath='},
+ {id:'school-establish',title:'학교설립 절차',desc:'학교설립 관련 절차와 공식 안내 자료를 확인합니다.',icon:'🏫',url:'https://www.jbe.go.kr/board/list.jbe?boardId=BBS_0000087&menuCd=DOM_000000106002004000&contentsSid=338&cpath='},
+ {id:'manual',title:'업무매뉴얼',desc:'전북교육청이 제공하는 분야별 업무매뉴얼을 검색합니다.',icon:'📚',url:'https://www.jbe.go.kr/board/list.jbe?boardId=BBS_0000010&menuCd=DOM_000000106005000000&contentsSid=346&cpath='}
+];
+const departments=[
+ ['정책기획과','정책국','704'],['미래교육과','정책국','705'],['학교안전과','정책국','706'],['예산과','정책국','707'],['교육협력과','정책국','708'],
+ ['중등교육과','교육국','709'],['유초등특수교육과','교육국','710'],['교원인사과','교육국','711'],['문예체건강과','교육국','712'],['창의인재교육과','교육국','713'],['민주시민교육과','교육국','714'],
+ ['총무과','행정국','715'],['행정과','행정국','716'],['재무과','행정국','717'],['노사협력과','행정국','718'],['시설과','행정국','719'],['감사관','독립','702']
+].map(([title,group,code])=>({id:`dept-${code}`,title,group,desc:'부서자료실 · 묻고답하기 · 업무마당 · 지침 확인',url:`https://www.jbe.go.kr/office/index.jbe?menuCd=DOM_000000${code}000000000`}));
+let inactive=new Set();let favorites=new Set(JSON.parse(localStorage.getItem('operFavorites')||'[]'));const all=[...guides,...departments];
+const esc=s=>s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[c]));
+function card(x,type){return `<article class="${type==='guide'?'card':'dept-card'}" data-id="${x.id}">${type==='guide'?`<div class="icon">${x.icon}</div>`:`<small>${x.group==='독립'?'감사관':x.group}</small>`}<button class="fav ${favorites.has(x.id)?'on':''}" data-fav="${x.id}" aria-label="${esc(x.title)} 즐겨찾기">★</button><a href="${x.url}" target="_blank" rel="noopener" style="color:inherit;text-decoration:none"><h3>${esc(x.title)}</h3><p>${esc(x.desc)}</p><span class="open">공식 페이지 열기 ↗</span></a></article>`}
+function render(){document.querySelector('#guideGrid').innerHTML=guides.filter(x=>!inactive.has(x.id)).map(x=>card(x,'guide')).join('');renderDept(document.querySelector('#filters .active')?.dataset.group||'전체');bindFav();renderFavorites()}
+function renderDept(group){document.querySelector('#deptGrid').innerHTML=departments.filter(x=>!inactive.has(x.id)&&(group==='전체'||x.group===group)).map(x=>card(x,'dept')).join('');bindFav()}
+function bindFav(){document.querySelectorAll('[data-fav]').forEach(b=>b.onclick=e=>{e.preventDefault();e.stopPropagation();const id=b.dataset.fav;favorites.has(id)?favorites.delete(id):favorites.add(id);localStorage.setItem('operFavorites',JSON.stringify([...favorites]));render()})}
+function renderFavorites(){const box=document.querySelector('#favoriteGrid'),items=all.filter(x=>favorites.has(x.id)&&!inactive.has(x.id));box.className=items.length?'dept-grid':'empty';box.innerHTML=items.length?items.map(x=>card(x,x.icon?'guide':'dept')).join(''):'아직 즐겨찾기한 자료가 없습니다.';bindFav()}
+document.querySelectorAll('#filters button').forEach(b=>b.onclick=()=>{document.querySelectorAll('#filters button').forEach(x=>x.classList.remove('active'));b.classList.add('active');renderDept(b.dataset.group)});
+document.querySelectorAll('.chips button').forEach(b=>b.onclick=()=>{document.querySelector('#searchInput').value=b.textContent;search(b.textContent)});
+document.querySelector('#searchForm').onsubmit=e=>{e.preventDefault();search(document.querySelector('#searchInput').value)};
+function search(q){q=q.trim().toLowerCase();const found=all.filter(x=>!inactive.has(x.id)&&`${x.title} ${x.desc} ${x.group||''}`.toLowerCase().includes(q));document.querySelector('#resultList').innerHTML=found.length?found.map(x=>`<a class="result-item" href="${x.url}" target="_blank" rel="noopener"><small>${x.group||'행정 길라잡이'}</small><strong>${esc(x.title)}</strong><p>${esc(x.desc)}</p></a>`).join(''):'<p class="empty">일치하는 메뉴가 없습니다. 다른 검색어를 입력해 주세요.</p>';document.querySelector('#results').hidden=false}
+document.querySelector('#closeResults').onclick=()=>document.querySelector('#results').hidden=true;document.querySelector('#results').onclick=e=>{if(e.target.id==='results')e.currentTarget.hidden=true};document.querySelector('#clearFavorites').onclick=()=>{favorites.clear();localStorage.removeItem('operFavorites');render()};
+fetch('link-status.json',{cache:'no-store'}).then(r=>r.ok?r.json():Promise.reject()).then(s=>{inactive=new Set(s.inactive||[]);document.querySelector('#statusText').textContent=`링크 상태 최종 점검: ${s.checkedAt?.slice(0,10)||'확인됨'} · 접속 불가 링크는 자동으로 숨김 처리됩니다.`;render()}).catch(()=>{document.querySelector('#statusText').textContent='공식 링크는 새 창에서 열립니다.';render()});render();
