@@ -14,7 +14,7 @@ const common={
  step:(title,summary,type='do',todo=[],docs=[],check='처리 결과와 결재 상태를 확인합니다.')=>({title,summary,type,todo,docs,check})
 };
 const areas=[
- {id:'people',icon:'♙',name:'사람·근무',desc:'인사, 복무, 급여와 교육공무직 업무',works:[
+ {id:'people',icon:'♙',name:'인사·복무',desc:'인사, 복무, 급여와 교육공무직 업무',works:[
   {name:'복무 관리',desc:'근무상황 신청부터 승인·기록까지',resources:[['총무과 공식자료',OFFICIAL.hr]],steps:[
    common.step('적용 기준 확인','복무 종류와 적용 규정을 먼저 확인','check',['대상자의 신분과 복무 유형 확인','기관 내부 위임전결 기준 확인'],['관련 복무 규정','기관별 복무 처리 기준'],'적용할 복무 유형과 승인권자가 확정됩니다.'),
    common.step('신청 내용 작성','기간·사유·근무상황을 등록','do',['나이스 등 업무시스템에서 근무상황 입력','필요한 증빙자료 첨부'],['신청서','증빙자료'],'신청 기간과 실제 근무일이 일치합니다.'),
@@ -62,7 +62,7 @@ const areas=[
    common.step('검사·대금 지급','완료 검사 후 대금 정산','approve',['완료·준공검사','하자·보험·세금 서류 확인 후 지급'],['완료계','검사조서','청구서'])
   ]}
  ]},
- {id:'asset',icon:'⌂',name:'자산·시설',desc:'재산, 시설공사와 유지관리 업무',works:[
+ {id:'asset',icon:'⌂',name:'재산·시설',desc:'재산, 시설공사와 유지관리 업무',works:[
   {name:'시설 유지보수',desc:'점검·계획·공사·사후관리 흐름',resources:[['시설과 공식자료',OFFICIAL.facility],['학교안전과 공식자료',OFFICIAL.safety]],steps:[
    common.step('현장 상태 점검','결함 위치와 위험도를 확인','check',['사진·치수·사용상태 기록','긴급 통제 필요성 판단'],['점검표','현장사진']),
    common.step('보수 범위·예산 검토','공법과 예상비용을 검토','check',['보수 범위와 우선순위 결정','예산 확보 여부 확인'],['보수계획','견적서']),
