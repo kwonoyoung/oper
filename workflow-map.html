@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="전북교육 행정업무의 처리 순서와 공식 자료를 한눈에 확인하는 업무지도">
+  <title>업무지도 | 전북교육 행정업무 길라잡이</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="workflow-map.css">
+</head>
+<body>
+  <a class="skip" href="#main">본문 바로가기</a>
+  <header class="map-header">
+    <a class="map-brand" href="./"><span>전북</span><b>행정업무 길라잡이</b></a>
+    <div class="map-title"><strong>업무지도</strong><small>BETA</small></div>
+    <label class="map-search"><span>⌕</span><input id="searchInput" type="search" placeholder="업무·단계 검색" aria-label="업무와 단계 검색"><button id="clearSearch" aria-label="검색어 지우기">×</button></label>
+    <div class="header-actions"><button id="helpButton">ⓘ 사용법</button><button id="themeButton">◐ 화면</button></div>
+  </header>
+
+  <main id="main">
+    <section class="map-intro">
+      <div><p>JEONBUK EDUCATION · WORKFLOW INDEX</p><h1>교육행정 업무지도</h1><span>업무 영역을 선택하고, 단계 카드를 눌러 실제 처리 순서와 공식 자료를 확인하세요.</span></div>
+      <div class="beta-note"><b>시범 운영</b><p>실제 처리 전 소속 기관의 최신 지침과 내부 결재 기준을 반드시 확인하세요.</p></div>
+    </section>
+
+    <section class="area-section" id="areaSection">
+      <div class="section-label"><span>업무 영역에서 찾기</span><h2>어떤 업무를 확인하시나요?</h2></div>
+      <div class="area-grid" id="areaGrid"></div>
+    </section>
+
+    <section class="workspace" id="workspace" hidden>
+      <div class="workspace-top">
+        <button id="backButton">← 전체 업무</button>
+        <div><p id="areaName"></p><h2 id="workTitle"></h2><span id="workDesc"></span></div>
+        <button id="resourceButton">관련 자료 <b id="resourceCount">0</b></button>
+      </div>
+      <div class="work-tabs" id="workTabs" role="tablist"></div>
+      <div class="flow-toolbar">
+        <div><b>업무 처리 흐름</b><span>단계를 선택하면 상세 내용이 열립니다.</span></div>
+        <div class="legend"><span class="dot do"></span>처리 <span class="dot check"></span>확인 <span class="dot approve"></span>승인</div>
+      </div>
+      <div class="flow-layout">
+        <div class="flow-panel"><div class="flow-list" id="flowList"></div></div>
+        <aside class="detail-panel" id="detailPanel">
+          <div class="detail-empty"><span>☞</span><b>단계를 선택하세요</b><p>해야 할 일, 준비자료와 완료 확인사항을 볼 수 있습니다.</p></div>
+        </aside>
+      </div>
+      <section class="related" id="related">
+        <div><p>OFFICIAL RESOURCES</p><h2>관련 업무 자료</h2><span>전북특별자치도교육청의 공식 게시판 원문으로 연결됩니다.</span></div>
+        <div id="resourceList"></div>
+      </section>
+    </section>
+
+    <section class="search-results" id="searchResults" hidden>
+      <div class="section-label"><span>SEARCH RESULTS</span><h2>검색 결과 <b id="searchCount">0</b></h2></div>
+      <div id="searchList"></div>
+    </section>
+  </main>
+
+  <dialog id="helpDialog">
+    <div class="dialog-head"><div><p>처음이라면 1분</p><h2>업무지도 사용법</h2></div><button id="closeHelp" aria-label="닫기">×</button></div>
+    <ol><li><b>업무 영역 선택</b><span>6개 영역에서 확인할 업무를 고릅니다.</span></li><li><b>세부 업무 선택</b><span>상단 탭에서 실제 처리할 업무를 선택합니다.</span></li><li><b>단계 카드 확인</b><span>순서에 따라 카드를 누르고 상세 내용을 확인합니다.</span></li><li><b>공식 원문 확인</b><span>관련 자료에서 최신 지침과 시행 여부를 확인합니다.</span></li></ol>
+    <button class="primary" id="startButton">업무지도 둘러보기</button>
+  </dialog>
+  <footer><a href="./">← 행정업무 길라잡이</a><p>자료 출처 · 전북특별자치도교육청 공식 홈페이지</p></footer>
+  <script src="workflow-map.js"></script>
+</body>
+</html>
