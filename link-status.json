@@ -1,1 +1,28 @@
-{"checkedAt":"2026-08-08T00:00:00.000Z","inactive":[]}
+{
+  "checkedAt": "2026-08-09T21:49:18.414Z",
+  "inactive": [],
+  "failures": {
+    "calendar": 0,
+    "admin-guide": 0,
+    "accounting": 0,
+    "school-establish": 0,
+    "manual": 0,
+    "dept-704": 0,
+    "dept-705": 0,
+    "dept-706": 0,
+    "dept-707": 0,
+    "dept-708": 0,
+    "dept-709": 0,
+    "dept-710": 0,
+    "dept-711": 0,
+    "dept-712": 0,
+    "dept-713": 0,
+    "dept-714": 0,
+    "dept-715": 0,
+    "dept-716": 0,
+    "dept-717": 0,
+    "dept-718": 0,
+    "dept-719": 0,
+    "dept-702": 0
+  }
+}
