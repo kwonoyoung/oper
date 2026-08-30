@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-08-23T21:37:11.042Z",
+  "checkedAt": "2026-08-30T23:31:33.851Z",
   "inactive": [],
   "failures": {
     "calendar": 0,
@@ -19,7 +19,7 @@
     "dept-713": 0,
     "dept-714": 0,
     "dept-715": 0,
-    "dept-716": 0,
+    "dept-716": 1,
     "dept-717": 0,
     "dept-718": 0,
     "dept-719": 0,
