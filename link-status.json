@@ -1,6 +1,8 @@
 {
-  "checkedAt": "2026-10-18T23:15:09.190Z",
-  "inactive": [],
+  "checkedAt": "2026-10-25T23:17:59.719Z",
+  "inactive": [
+    "dept-716"
+  ],
   "failures": {
     "calendar": 0,
     "admin-guide": 0,
@@ -19,10 +21,10 @@
     "dept-713": 0,
     "dept-714": 0,
     "dept-715": 0,
-    "dept-716": 2,
-    "dept-717": 0,
+    "dept-716": 3,
+    "dept-717": 1,
     "dept-718": 0,
-    "dept-719": 0,
+    "dept-719": 1,
     "dept-702": 0
   }
 }
